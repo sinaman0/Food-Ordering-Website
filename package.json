@@ -1,0 +1,31 @@
+{
+  "name": "food-ordering-website",
+  "version": "1.0.0",
+  "description": "This is namaste react",
+  "keywords": [
+    "react"
+  ],
+  "homepage": "https://github.com/sinaman0/Food-Ordering-Website#readme",
+  "bugs": {
+    "url": "https://github.com/sinaman0/Food-Ordering-Website/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sinaman0/Food-Ordering-Website.git"
+  },
+  "license": "ISC",
+  "author": "Aman Singh",
+  "type": "commonjs",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "parcel": "^2.16.4"
+  },
+  "dependencies": {
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  }
+}
