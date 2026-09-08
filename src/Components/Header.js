@@ -9,7 +9,7 @@ export const Header = () => {
 
             <div className="nav-items">
                 <ul>
-                    <li>Home</li>
+                    <li>Homee</li>
                     <li>About us</li>
                     <li>Contact us</li>
                     <li>Cart</li>
