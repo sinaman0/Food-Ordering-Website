@@ -61,7 +61,7 @@ body {
 
 
 /* Search */
-.Search {
+/* .Search {
     width: 100%;
     max-width: 500px;
     padding: 14px 18px;
@@ -73,8 +73,16 @@ body {
     font-size: 16px;
     color: #777;
     background-color: #fff;
+} */
+
+.Search{
+   padding:5px;
+   margin:5px;
 }
 
+.filter{
+    display:flex;
+}
 
 /* Restaurant cards container */
 .res-container {
