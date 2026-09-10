@@ -14,14 +14,15 @@ useEffect(()=>{
 },[])
 
 const fetchData = async () =>{
-    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.63270&lng=77.21980&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.5862321&lng=77.3855549&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
 
+ 
     const json = await data.json();
 
 
     console.log(json);
-    setlistofRestuarent(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
-    setfilterRestuarent(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
+    setlistofRestuarent( json?.data?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants );
+    setfilterRestuarent( json?.data?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
 
 }
 
@@ -50,7 +51,7 @@ const fetchData = async () =>{
                 </div>
                 <button className="filter-btn" onClick={()=>{
                    const Filterlist = listofRestuarent.filter((res)=> res.info.avgRating > 4);
-                         setlistofRestuarent(Filterlist);
+                         setfilterRestuarent(Filterlist);
                    // console.log(Filterlist);
                 }}
                    
@@ -63,9 +64,26 @@ const fetchData = async () =>{
                     {listofRestuarent.length === 0 ? (
             <Shimmer />
         ) : (
+
+          /////// this is to display on Screen
+
+          /// for each restaurent we are sending restaurntcard data as props in this format resData = {
+    // info: {
+    //     name: "McDonald's",
+    //     avgRating: 4.5,
+    //     cloudinaryImageId: "abc123",
+    //     cuisines: ["American", "Fast Food"],
+    //     sla: {
+    //         deliveryTime: 17
+    //     }
+    // }
+//}
+
+//restuarentcard get these data and present it on screen.
+
             filterRestuarent.map((restaurant) => (
                 <RestuarentCard
-                    key={restaurant.info.id}
+                    key={restaurant?.info?.id}
                     resData={restaurant}
                 />
             ))

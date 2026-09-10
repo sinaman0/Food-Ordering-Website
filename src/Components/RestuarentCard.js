@@ -6,10 +6,12 @@ const RestuarentCard = (props) => {
     return (
         <div className="res-card">
             <img
+            
                 className="res-logo"
                 src={ CDN_URL + resData.info.cloudinaryImageId}
             />
 
+{/* getting data as props and this means const { resData } = props changing props.resdata to resdata and we can access whatever we like from those object  */}
             <h3>{resData.info.name}</h3>
             <h3>{resData.info.cuisines.join(", ")}</h3>
             <h3>{resData.info.avgRating} Stars</h3>
