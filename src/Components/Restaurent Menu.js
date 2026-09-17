@@ -45,15 +45,22 @@
 
 
 import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 
 const RestaurentMenu = () => {
 
     const [resInfo, setresInfo] = useState(null);
     const [menu, setMenu] = useState(null);
 
+const {resId} = useParams();
+//console.log(params);
+
+
+
     useEffect(() => {
         fetchMenu();
-    }, []);
+    }, [resId]);
+
 const fetchMenu = async () => {
 
     const data = await fetch(
@@ -85,12 +92,47 @@ const fetchMenu = async () => {
     console.log("MENU:", menuJson);
 
     setMenu(menuJson.data);
+    
 };
+
+
 
 
     const restaurant =
         resInfo?.cards?.[1]?.card?.card?.gridElements
             ?.infoWithStyle?.restaurants?.[0]?.info;
+
+            // const data = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.categories[0]?.itemCards;
+
+            // console.log(data);
+
+//             const data =
+//   menu?.cards[4]
+//     ?.groupedCard
+//     ?.cardGroupMap
+//     ?.REGULAR
+//     ?.cards[2]
+//     ?.card
+//     ?.card
+//     ?.categories[0]
+//     ?.itemCards;
+
+
+const categories =
+    menu?.cards?.[4]
+        ?.groupedCard
+        ?.cardGroupMap
+        ?.REGULAR
+        ?.cards?.[2]
+        ?.card
+        ?.card
+        ?.categories || [];
+
+const data = categories.flatMap(
+    (category) => category.itemCards || []
+);
+
+console.log(data);
 
     return (
         <div>
@@ -106,10 +148,18 @@ const fetchMenu = async () => {
             <h3>Menu</h3>
 
             <ul>
-                <li>Biryani</li>
-                <li>Chole</li>
-                <li>Puri</li>
+                {/* <li>{data?.[0]?.card?.info?.name}</li>
+                <li>{data?.[1]?.card?.info?.name}</li>
+                <li>{data?.[2]?.card?.info?.name}</li> */}
+
+                {data?.map((item) => (
+    <li key={item.card.info.id}>
+        {item.card.info.name} - {"Rs."} {item.card.info.price/100}
+    </li>
+))}
             </ul>
+
+            
 
         </div>
     );
