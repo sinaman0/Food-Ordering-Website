@@ -63,23 +63,24 @@ const {resId} = useParams();
 
 const fetchMenu = async () => {
 
-    const data = await fetch(
-        "https://foodfire.onrender.com/api/restaurants"
-    );
+//     const data = await fetch(
+//         "https://foodfire.onrender.com/api/restaurants"
+//     );
 
-    const json = await data.json();
+//     const json = await data.json();
 
-    console.log(json);
+//     console.log(json);
 
-    setresInfo(json.data);
+//     setresInfo(json.data);
 
-    const restaurant =
-        json.data.cards[1].card.card
-            .gridElements.infoWithStyle.restaurants[0].info;
+//     const restaurant =
+//         json.data.cards[1].card.card
+//             .gridElements.infoWithStyle.restaurants[0].info;
 
-    const resId = restaurant.id;
+//    // const resId = restaurant.id;
 
-    console.log("Restaurant ID:", resId);
+
+//     console.log("Restaurant ID:", resId);
 
 
     // Fetch menu
@@ -98,52 +99,52 @@ const fetchMenu = async () => {
 
 
 
-    const restaurant =
-        resInfo?.cards?.[1]?.card?.card?.gridElements
-            ?.infoWithStyle?.restaurants?.[0]?.info;
-
-            // const data = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.categories[0]?.itemCards;
-
-            // console.log(data);
-
-//             const data =
-//   menu?.cards[4]
-//     ?.groupedCard
-//     ?.cardGroupMap
-//     ?.REGULAR
-//     ?.cards[2]
-//     ?.card
-//     ?.card
-//     ?.categories[0]
-//     ?.itemCards;
-
-
-const categories =
-    menu?.cards?.[4]
+const regularCards =
+    menu?.cards
+        ?.find((card) => card?.groupedCard?.cardGroupMap?.REGULAR)
         ?.groupedCard
         ?.cardGroupMap
         ?.REGULAR
-        ?.cards?.[2]
-        ?.card
-        ?.card
-        ?.categories || [];
+        ?.cards || [];
 
-const data = categories.flatMap(
-    (category) => category.itemCards || []
-);
+const data = regularCards.flatMap((card) => {
+    const cardData = card?.card?.card;
 
-console.log(data);
+    if (cardData?.itemCards) {
+        return cardData.itemCards;
+    }
+
+    if (cardData?.categories) {
+        return cardData.categories.flatMap(
+            (category) => category.itemCards || []
+        );
+    }
+
+    return [];
+});
+console.log("Regular Cards:", regularCards);
+console.log("Menu Items:", data);
+
+// const categories =
+//     menu?.cards?.[4]
+//         ?.groupedCard
+//         ?.cardGroupMap
+//         ?.REGULAR
+//         ?.cards?.[2]
+//         ?.card
+//         ?.card
+//         ?.categories || [];
+
+// const data = categories.flatMap(
+//     (category) => category.itemCards || []
+// );
+
+// console.log(data);
 
     return (
         <div>
 
-            <h1>{restaurant?.name}</h1>
-
-            <h3>
-                {restaurant?.cuisines?.join(", ")}
-                {" - "}
-                {restaurant?.costForTwo}
-            </h3>
+            <h1>restaurantId : {resId}</h1>
 
             <h3>Menu</h3>
 
@@ -152,9 +153,9 @@ console.log(data);
                 <li>{data?.[1]?.card?.info?.name}</li>
                 <li>{data?.[2]?.card?.info?.name}</li> */}
 
-                {data?.map((item) => (
-    <li key={item.card.info.id}>
-        {item.card.info.name} - {"Rs."} {item.card.info.price/100}
+               {data?.map((item, index) => (
+    <li key={`${item.card.info.id}-${index}`}>
+        {item.card.info.name} - Rs. {item.card.info.price / 100}
     </li>
 ))}
             </ul>
