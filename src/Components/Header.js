@@ -1,7 +1,12 @@
 import { LOGO_URL } from "../Utils/Constant";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../Utils/useOnlineStatus"
+
 
 export const Header = () => {
+
+    const onlinestatus = useOnlineStatus();
+
     return (
         <div className="header">
             <div className="logo- container">
@@ -10,6 +15,9 @@ export const Header = () => {
 
             <div className="nav-items">
                 <ul>
+                    <li>
+                          Online Status : {onlinestatus ? "🟢" : "🔴" }
+                    </li>
                     <li>
                         <Link to="/">Homee</Link>
                      </li>

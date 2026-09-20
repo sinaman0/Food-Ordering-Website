@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../Utils/useOnlineStatus";
 
 
 const Body = () => {
@@ -30,6 +31,14 @@ const fetchData = async () =>{
 
 }
 
+const onlinestatus = useOnlineStatus();
+
+if(onlinestatus === "false")
+     return 
+(
+<h1>Plzz check your internet connection</h1>
+)
+ 
 
     return (
         <div className="body">
@@ -71,17 +80,7 @@ const fetchData = async () =>{
 
           /////// this is to display on Screen
 
-          /// for each restaurent we are sending restaurntcard data as props in this format resData = {
-    // info: {
-    //     name: "McDonald's",
-    //     avgRating: 4.5,
-    //     cloudinaryImageId: "abc123",
-    //     cuisines: ["American", "Fast Food"],
-    //     sla: {
-    //         deliveryTime: 17
-    //     }
-    // }
-//}
+
 
 //restuarentcard get these data and present it on screen.
 
