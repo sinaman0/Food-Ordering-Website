@@ -1,48 +1,5 @@
 
 
-// import { useEffect, useState } from "react";
-
-// const RestaurentMenu = () => {
-
-//     const [resInfo , setresInfo] = useState("")
-
-//     useEffect(() => {
-//         fetchMenu();
-//     }, []);
-
-//  const fetchMenu = async () => {
-// const data = await fetch(
-//   "https://foodfire.onrender.com/api/restaurants"
-// );
-
-// const json = await data.json();
-
-// console.log(json);
-// setresInfo(json.data);
-
-
-// };
-// //resInfo.data.cards[1].card.card.gridElements.infoWithStyle.restaurants[0].info.name
-
-//     return (
-//         <div>
-//             <h1>{resInfo?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants?.[0]?.info?.name}</h1>
-            
-//             <h3>{resInfo?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants?.[0]?.info?.cuisines.join(",")} - {resInfo?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants?.[0]?.info?.costForTwo}</h3>
-
-//             <h3>{}</h3>
-
-//             <ul>
-//                 <li>Biryani</li>
-//                 <li>chole</li>
-//                 <li>puri</li>
-//             </ul>
-//         </div>
-//     );
-// };
-
-// export default RestaurentMenu;
-
 
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -125,21 +82,6 @@ const data = regularCards.flatMap((card) => {
 console.log("Regular Cards:", regularCards);
 console.log("Menu Items:", data);
 
-// const categories =
-//     menu?.cards?.[4]
-//         ?.groupedCard
-//         ?.cardGroupMap
-//         ?.REGULAR
-//         ?.cards?.[2]
-//         ?.card
-//         ?.card
-//         ?.categories || [];
-
-// const data = categories.flatMap(
-//     (category) => category.itemCards || []
-// );
-
-// console.log(data);
 
     return (
         <div>

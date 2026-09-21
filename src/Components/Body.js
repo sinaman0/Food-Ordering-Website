@@ -37,6 +37,7 @@ if(onlinestatus === "false")
      return 
 (
 <h1>Plzz check your internet connection</h1>
+
 )
  
 

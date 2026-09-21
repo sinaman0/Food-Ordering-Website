@@ -26,10 +26,12 @@
     "parcel": "^2.16.4"
   },
   "dependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
     "cors": "^2.8.6",
     "express": "^5.2.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-router-dom": "^6.28.2"
+    "react-router-dom": "^6.28.2",
+    "tailwindcss": "^4.3.3"
   }
 }
